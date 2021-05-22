@@ -72,12 +72,14 @@ const PhotosUpload = {
 
     return false
   },
+  //essa função é para criar um novo fileList sem os itens removidos
   getAllFiles(){
+    //clipboardEvent porque não funciona no firefox DataTransfer
     const dataTransfer = new ClipboardEvent("").clipboardData || new DataTransfer()
 
     PhotosUpload.files.forEach(file => dataTransfer.items.add(file))
 
-    //dataTransfer retorna um fileList novo criado
+    //dataTransfer retorna um fileList novo criado dentro do files
     return dataTransfer.files
   },
   getContainer(image){
@@ -97,7 +99,6 @@ const PhotosUpload = {
 
     return button
   },
-
   removePhoto(event){
     const photoDiv = event.target.parentNode // <div> class=photo
 
@@ -109,7 +110,6 @@ const PhotosUpload = {
 
     photoDiv.remove()
   },
-
   removeOldPhoto(event){
     const photoDiv = event.target.parentNode
 
